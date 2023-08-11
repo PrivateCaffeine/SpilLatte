@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Espresso",
+    "description": "Here must be description of Espresso",
+    "recipe": "Here must be recipe of Espresso"
+  },
+  {
+    "name": "Cafe Latte",
+    "description": "Here must be description of Latte",
+    "recipe": "Here must be recipe of Latte"
+  },
+  {
+    "name": "Cappuccino",
+    "description": "Here must be description of Cappuccino",
+    "recipe": "Here must be recipe of Cappuccino"
+  },
+  {
+    "name": "Flat White",
+    "description": "Here must be description of Flat White",
+    "recipe": "Here must be recipe of Flat White"
+  },
+  {
+    "name": "Americano",
+    "description": "Here must be description of Americano",
+    "recipe": "Here must be recipe of Americano"
+  },
+  {
+    "name": "Mocha",
+    "description": "Here must be description of Mocha",
+    "recipe": "Here must be recipe of Mocha"
+  },
+  {
+    "name": "Macchiato",
+    "description": "Here must be description of Macchiato",
+    "recipe": "Here must be recipe of Macchiato"
+  },
+  {
+    "name": "Vienna",
+    "description": "Here must be description of Vienna",
+    "recipe": "Here must be recipe of Vienna"
+  },
+  {
+    "name": "Affogato",
+    "description": "Here must be description of Affogato",
+    "recipe": "Here must be recipe of Affogato"
+  },
+  {
+    "name": "Cafe au Lait",
+    "description": "Here must be description of Cafe au Lait",
+    "recipe": "Here must be recipe of Cafe au Lait"
+  },
+  {
+    "name": "Iced Coffee",
+    "description": "Here must be description of Iced Coffee",
+    "recipe": "Here must be recipe of Iced Coffee"
+  }
+]
