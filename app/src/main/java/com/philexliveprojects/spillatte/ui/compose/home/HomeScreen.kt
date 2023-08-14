@@ -1,6 +1,6 @@
 package com.philexliveprojects.spillatte.ui.compose.home
 
-import androidx.compose.foundation.Image
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,11 +20,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.philexliveprojects.spillatte.R
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.philexliveprojects.spillatte.data.CoffeeDrink
 import com.philexliveprojects.spillatte.ui.AppViewModelProvier
 import com.philexliveprojects.spillatte.ui.viewmodels.HomeViewModel
@@ -56,6 +57,7 @@ fun HomeScreenContent(
             items(items = list) { coffeeDrink ->
                 CoffeeBox(
                     title = coffeeDrink.name,
+                    coffeeDrink.uri,
                     onClick = { navigateToDetails(coffeeDrink.name) }
                 )
             }
@@ -67,15 +69,19 @@ fun HomeScreenContent(
 @Composable
 fun CoffeeBox(
     title: String,
+    uri: Uri?,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
     Card(onClick = onClick, modifier = modifier.size(120.dp)) {
         Column(Modifier.fillMaxSize()) {
-            Image(
-                painterResource(R.drawable.ic_launcher_foreground),
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(uri)
+                    .build(),
                 null,
-                Modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .weight(1f),
                 contentScale = ContentScale.Crop
@@ -92,6 +98,7 @@ fun CoffeeBox(
 fun CoffeeBoxPreview() {
     CoffeeBox(
         title = "Title",
+        Uri.EMPTY,
         onClick = {}
     )
 }

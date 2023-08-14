@@ -75,6 +75,12 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Work
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
