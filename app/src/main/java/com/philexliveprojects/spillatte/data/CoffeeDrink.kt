@@ -11,3 +11,15 @@ data class CoffeeDrink(
     val description: String,
     val uri: String
 )
+
+data class CoffeeDrinkRef(
+    val id: Int,
+    val name: String,
+    val uri: String
+)
+
+data class CoffeeDrinkDetails(
+    val name: String,
+    val description: String,
+    val uri: String
+)

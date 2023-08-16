@@ -7,12 +7,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.philexliveprojects.spillatte.ui.compose.details.DetailsScreen
 import com.philexliveprojects.spillatte.ui.compose.home.HomeScreen
 
 object SpilLatteDestinations {
     const val HOME = "home"
-    const val DETAILS = "details/{coffeeDrink}"
-    const val EDIT = "editDetails{coffeeDrink}"
+    const val DETAILS = "details/{id}"
 }
 
 @Composable
@@ -26,21 +26,14 @@ fun SpilLatteNavGraph(
         modifier = modifier
     ) {
         composable(SpilLatteDestinations.HOME) {
-            HomeScreen(navigateToDetails = {})
+            HomeScreen(onDetails = { navHostController.navigate("details/${it}") })
         }
 
         composable(
             route = SpilLatteDestinations.DETAILS,
-            arguments = listOf(navArgument("coffeeDrink") { type = NavType.StringType })
-        ) { navBackStackEntry ->
-            /*TODO*/
-        }
-
-        composable(
-            route = SpilLatteDestinations.EDIT,
-            arguments = listOf(navArgument("coffeeDrink") { type = NavType.StringType })
-        ) { navBackStackEntry ->
-            /*TODO*/
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) {
+            DetailsScreen(onBack = { navHostController.navigateUp() })
         }
     }
 }

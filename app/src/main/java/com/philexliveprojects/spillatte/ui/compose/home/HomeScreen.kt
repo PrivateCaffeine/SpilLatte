@@ -26,24 +26,24 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.philexliveprojects.spillatte.R
-import com.philexliveprojects.spillatte.data.CoffeeDrink
-import com.philexliveprojects.spillatte.ui.AppViewModelProvier
+import com.philexliveprojects.spillatte.data.CoffeeDrinkRef
+import com.philexliveprojects.spillatte.ui.AppViewModelProvider
 import com.philexliveprojects.spillatte.ui.viewmodels.HomeViewModel
 
 @Composable
 fun HomeScreen(
-    navigateToDetails: (String) -> Unit,
-    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvier.Factory)
+    onDetails: (Int) -> Unit,
+    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    HomeScreenContent(uiState.list, navigateToDetails = { navigateToDetails(it) })
+    HomeScreenContent(uiState, navigateToDetails = { onDetails(it) })
 }
 
 @Composable
 fun HomeScreenContent(
-    list: List<CoffeeDrink>,
+    list: List<CoffeeDrinkRef>,
     modifier: Modifier = Modifier,
-    navigateToDetails: (String) -> Unit = {}
+    navigateToDetails: (Int) -> Unit = {}
 ) {
     Column(modifier.fillMaxWidth()) {
         LazyVerticalGrid(
@@ -55,8 +55,8 @@ fun HomeScreenContent(
             items(items = list) { coffeeDrink ->
                 CoffeeBox(
                     title = coffeeDrink.name,
-                    coffeeDrink.uri,
-                    onClick = { navigateToDetails(coffeeDrink.name) }
+                    uri = coffeeDrink.uri,
+                    onClick = { navigateToDetails(coffeeDrink.id) }
                 )
             }
         }
@@ -77,7 +77,7 @@ fun CoffeeBox(
             AsyncImage(
                 model = ImageRequest.Builder(context)
                     .data(uri)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.ic_launcher_foreground)
                     .build(),
                 null,
                 modifier = Modifier
