@@ -1,6 +1,5 @@
 package com.philexliveprojects.spillatte.ui.compose.home
 
-import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.philexliveprojects.spillatte.R
 import com.philexliveprojects.spillatte.data.CoffeeDrink
 import com.philexliveprojects.spillatte.ui.AppViewModelProvier
 import com.philexliveprojects.spillatte.ui.viewmodels.HomeViewModel
-
 
 @Composable
 fun HomeScreen(
@@ -39,7 +38,6 @@ fun HomeScreen(
     val uiState by viewModel.uiState.collectAsState()
     HomeScreenContent(uiState.list, navigateToDetails = { navigateToDetails(it) })
 }
-
 
 @Composable
 fun HomeScreenContent(
@@ -69,7 +67,7 @@ fun HomeScreenContent(
 @Composable
 fun CoffeeBox(
     title: String,
-    uri: Uri?,
+    uri: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -79,6 +77,7 @@ fun CoffeeBox(
             AsyncImage(
                 model = ImageRequest.Builder(context)
                     .data(uri)
+                    .placeholder(R.drawable.ic_launcher_foreground)
                     .build(),
                 null,
                 modifier = Modifier
@@ -86,19 +85,22 @@ fun CoffeeBox(
                     .weight(1f),
                 contentScale = ContentScale.Crop
             )
-            Text(title, Modifier.padding(12.dp), style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = title,
+                modifier = Modifier.padding(vertical = 4.dp, horizontal = 12.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
 
     }
 }
-
 
 @Preview
 @Composable
 fun CoffeeBoxPreview() {
     CoffeeBox(
         title = "Title",
-        Uri.EMPTY,
+        "",
         onClick = {}
     )
 }
