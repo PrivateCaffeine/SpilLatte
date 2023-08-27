@@ -13,6 +13,7 @@ import com.philexliveprojects.spillatte.ui.theme.SpilLatteTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             SpilLatteTheme {
                 // A surface container using the 'background' color from the theme

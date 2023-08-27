@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SpilLatte</string>
     <string name="add_coffee_drink">Add coffee drink</string>
+    <string name="back_to_home">Back to home</string>
+    <string name="customization">Customization</string>
+    <string name="theme">Theme of your app</string>
 </resources>

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 class OfflineCoffeeDrinkRepository(
     private val coffeeDrinkDao: CoffeeDrinkDao
 ) : CoffeeDrinkRepository {
-    override fun getAll(): Flow<List<CoffeeDrinkRef>> = coffeeDrinkDao.getAll()
+    override fun getAll(): Flow<List<String>> = coffeeDrinkDao.getAll()
 
-    override fun get(id: Int): Flow<CoffeeDrinkDetails> = coffeeDrinkDao.get(id)
+    override fun get(name: String): Flow<CoffeeDrink> = coffeeDrinkDao.get(name)
 }

@@ -12,7 +12,7 @@ import com.philexliveprojects.spillatte.ui.compose.home.HomeScreen
 
 object SpilLatteDestinations {
     const val HOME = "home"
-    const val DETAILS = "details/{id}"
+    const val DETAILS = "details/{name}"
 }
 
 @Composable
@@ -31,7 +31,7 @@ fun SpilLatteNavGraph(
 
         composable(
             route = SpilLatteDestinations.DETAILS,
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
+            arguments = listOf(navArgument("name") { type = NavType.StringType })
         ) {
             DetailsScreen(onBack = { navHostController.navigateUp() })
         }

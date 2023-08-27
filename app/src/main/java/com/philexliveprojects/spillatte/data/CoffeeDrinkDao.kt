@@ -8,16 +8,16 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CoffeeDrinkDao {
     @Query(
-        "SELECT id, name, uri " +
+        "SELECT name " +
                 "FROM $COFFEE_DRINK_TABLE " +
                 "ORDER BY name ASC;"
     )
-    fun getAll(): Flow<List<CoffeeDrinkRef>>
+    fun getAll(): Flow<List<String>>
 
     @Query(
-        "SELECT name, description, uri " +
+        "SELECT * " +
                 "FROM $COFFEE_DRINK_TABLE " +
-                "WHERE id = :id;"
+                "WHERE name = :name;"
     )
-    fun get(id: Int): Flow<CoffeeDrinkDetails>
+    fun get(name: String): Flow<CoffeeDrink>
 }

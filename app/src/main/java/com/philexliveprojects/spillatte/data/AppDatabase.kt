@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.philexliveprojects.spillatte.utils.DATABASE_NAME
+import com.philexliveprojects.spillatte.utils.INSET_DATABASE_NAME
 
 @Database(
     entities = [CoffeeDrink::class],
-    version = 3,
+    version = 4,
     exportSchema = false,
 )
 @TypeConverters(CoffeeDrinkConverter::class)
@@ -28,7 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
-//                .createFromAsset("coffee.db")
+                .createFromAsset(INSET_DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
         }
