@@ -16,7 +16,7 @@ class DetailsViewModel(
     coffeeRepository: CoffeeRepository,
     unsplashRepository: UnsplashRepository
 ) : ViewModel() {
-    val uiState = coffeeRepository.get(savedStateHandle["name"] ?: "").stateIn(
+    val coffee = coffeeRepository.get(savedStateHandle["name"] ?: "").stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000L),
         initialValue = Coffee(name = "", description = "")
