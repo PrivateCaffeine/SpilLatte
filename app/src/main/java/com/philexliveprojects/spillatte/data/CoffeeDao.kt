@@ -6,7 +6,7 @@ import com.philexliveprojects.spillatte.utils.COFFEE_DRINK_TABLE
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface CoffeeDrinkDao {
+interface CoffeeDao {
     @Query(
         "SELECT name " +
                 "FROM $COFFEE_DRINK_TABLE " +
@@ -19,5 +19,5 @@ interface CoffeeDrinkDao {
                 "FROM $COFFEE_DRINK_TABLE " +
                 "WHERE name = :name;"
     )
-    fun get(name: String): Flow<CoffeeDrink>
+    fun get(name: String): Flow<Coffee>
 }

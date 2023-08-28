@@ -20,6 +20,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "UNSPLASH_ACCESS_KEY", "\"" + getUnsplashAccess() + "\"")
     }
 
     buildTypes {
@@ -40,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -59,8 +62,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.11.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
     implementation("androidx.paging:paging-compose:3.2.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // Compose
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -83,4 +91,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+fun getUnsplashAccess(): String? {
+    return project.findProperty("unsplash_access_key") as? String
 }

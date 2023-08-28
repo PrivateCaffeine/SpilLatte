@@ -1,13 +1,18 @@
 package com.philexliveprojects.spillatte.data
 
 import android.content.Context
+import com.philexliveprojects.spillatte.api.UnsplashService
 
 interface AppContainer {
-    val coffeeDrinkRepository: CoffeeDrinkRepository
+    val coffeeRepository: CoffeeRepository
+    val unsplashRepository: UnsplashRepository
 }
 
 class AppDataContainer(private val context: Context) : AppContainer {
-    override val coffeeDrinkRepository: CoffeeDrinkRepository by lazy {
-        OfflineCoffeeDrinkRepository(AppDatabase.getInstance(context).coffeeDrinkDao())
+    override val coffeeRepository: CoffeeRepository by lazy {
+        CoffeeRepository(AppDatabase.getInstance(context).coffeeDrinkDao())
+    }
+    override val unsplashRepository: UnsplashRepository by lazy {
+        UnsplashRepository(UnsplashService.retrofit)
     }
 }

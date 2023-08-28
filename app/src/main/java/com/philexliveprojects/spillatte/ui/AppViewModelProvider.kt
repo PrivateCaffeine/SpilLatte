@@ -12,13 +12,14 @@ import com.philexliveprojects.spillatte.ui.viewmodels.HomeViewModel
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
-            HomeViewModel(spilLatteApplication().container.coffeeDrinkRepository)
+            HomeViewModel(spilLatteApplication().container.coffeeRepository)
         }
 
         initializer {
             DetailsViewModel(
                 createSavedStateHandle(),
-                spilLatteApplication().container.coffeeDrinkRepository
+                spilLatteApplication().container.coffeeRepository,
+                spilLatteApplication().container.unsplashRepository
             )
         }
     }

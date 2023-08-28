@@ -4,18 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import com.philexliveprojects.spillatte.utils.DATABASE_NAME
 import com.philexliveprojects.spillatte.utils.INSET_DATABASE_NAME
 
 @Database(
-    entities = [CoffeeDrink::class],
-    version = 4,
+    entities = [Coffee::class],
+    version = 1,
     exportSchema = false,
 )
-@TypeConverters(CoffeeDrinkConverter::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun coffeeDrinkDao(): CoffeeDrinkDao
+    abstract fun coffeeDrinkDao(): CoffeeDao
 
     companion object {
         @Volatile

@@ -49,7 +49,7 @@ fun CoffeeCard(
                     .fillMaxSize()
                     .weight(1f),
                 contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
             )
             Text(
                 text = title,

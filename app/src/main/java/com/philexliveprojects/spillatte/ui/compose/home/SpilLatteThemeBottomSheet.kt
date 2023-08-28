@@ -3,7 +3,6 @@ package com.philexliveprojects.spillatte.ui.compose.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,33 +36,46 @@ fun SpilLatteThemeBottomSheet(
         modifier = modifier,
         sheetState = sheetState
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(text = stringResource(R.string.theme), style = MaterialTheme.typography.labelMedium)
+        SpilLatteThemeBottomSheetContent(onOption)
+    }
+}
 
-            val options = listOf("default", "light", "dark")
-            var selected by remember { mutableStateOf(options[0]) }
-            Row(
-                modifier = Modifier
-                    .selectableGroup(),
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                options.forEach { option ->
-                    FilterChip(
-                        selected = option == selected,
-                        onClick = {
-                            onOption(option)
-                            selected = option
-                        },
-                        label = { Text(text = option) })
-                }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SpilLatteThemeBottomSheetContent(
+    onOption: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(12.dp)
+    ) {
+        Text(
+            text = stringResource(R.string.theme),
+            style = MaterialTheme.typography.labelMedium
+        )
+
+        val options = listOf("default", "light", "dark")
+        var selected by remember { mutableStateOf(options[0]) }
+        Row(
+            modifier = Modifier
+                .selectableGroup(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            options.forEach { option ->
+                FilterChip(
+                    selected = option == selected,
+                    onClick = {
+                        onOption(option)
+                        selected = option
+                    },
+                    label = { Text(text = option) })
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun SpilLatteThemeBottomSheet() {
-    SpilLatteThemeBottomSheet(onDismissRequest = { /*TODO*/ }, onOption = { /*TODO*/ })
+    SpilLatteThemeBottomSheetContent({})
 }
