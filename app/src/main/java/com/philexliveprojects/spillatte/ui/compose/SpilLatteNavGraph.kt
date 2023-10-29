@@ -1,7 +1,6 @@
 package com.philexliveprojects.spillatte.ui.compose
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -17,13 +16,11 @@ object SpilLatteDestinations {
 
 @Composable
 fun SpilLatteNavGraph(
-    navHostController: NavHostController,
-    modifier: Modifier = Modifier
+    navHostController: NavHostController
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = SpilLatteDestinations.HOME,
-        modifier = modifier
+        startDestination = SpilLatteDestinations.HOME
     ) {
         composable(SpilLatteDestinations.HOME) {
             HomeScreen(onDetails = { navHostController.navigate("details/${it}") })
@@ -33,7 +30,7 @@ fun SpilLatteNavGraph(
             route = SpilLatteDestinations.DETAILS,
             arguments = listOf(navArgument("name") { type = NavType.StringType })
         ) {
-            DetailsScreen(onBack = { navHostController.navigateUp() })
+            DetailsScreen { navHostController.navigateUp() }
         }
     }
 }

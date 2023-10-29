@@ -16,13 +16,17 @@ class DetailsViewModel(
     coffeeRepository: CoffeeRepository,
     unsplashRepository: UnsplashRepository
 ) : ViewModel() {
-    val coffee = coffeeRepository.get(savedStateHandle["name"] ?: "").stateIn(
+    private val coffeeName = savedStateHandle["name"] ?: ""
+
+    val coffee = coffeeRepository.get(coffeeName).stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000L),
         initialValue = Coffee(name = "", description = "")
     )
 
-    val photos = unsplashRepository.getPhotos(savedStateHandle["name"] ?: "null").cachedIn(viewModelScope)
+    val unsplashPhotos = unsplashRepository.getPhotos(coffeeName)
+        .cachedIn(viewModelScope)
+
 
     fun hasValidUnsplashKey() = BuildConfig.UNSPLASH_ACCESS_KEY != "null"
 }

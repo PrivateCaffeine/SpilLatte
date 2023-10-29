@@ -29,7 +29,7 @@ interface UnsplashService {
             .addInterceptor(logger)
             .build()
 
-        val retrofit = Retrofit.Builder()
+        val retrofit: UnsplashService = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
